@@ -1,0 +1,457 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #181A21;
+    margin: auto;
+    color: #b8b6b4;
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+    position: relative;
+    max-width: 100%;
+}
+
+a {
+    padding: 45px 7px 7px 7px;
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+nav {
+    height: 104px;
+    max-width: 100%;
+    background-color: #171a21;
+    color: #b8b6b4;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.responsive_header {
+    display: none;
+}
+
+.logo_steam {
+    height: 44px;
+    width: 176;
+    margin-left: 50px;
+}
+
+.listaR {
+    align-self: flex-start;
+    flex-basis: auto;
+    padding-top: 15px;
+    padding-right: 50px;
+    max-width: 50%;
+}
+
+.instale {
+    display: inline-block;
+    height: 24px;
+    padding: 5px 09px 0px 35px;
+    background-image: url(https://store.akamai.steamstatic.com/public/shared/images/header/btn_header_installsteam_download.png?v=1);
+    background-repeat: no-repeat;
+    background-color: #5c7e10;
+    background-position: 10px 5px;
+}
+
+.idioma {
+    padding-right: 20px;
+    background-image: url(https://store.akamai.steamstatic.com/public/shared/images/popups/btn_arrow_down_padded.png);
+    background-position: right 85%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 24px;
+}
+
+main {
+    height: 662px;
+    max-width: 100%;
+    background: radial-gradient(rgba(24, 26, 33, 0) 0%, #181A21 100%) no-repeat, url(https://community.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg) center top no-repeat, #181A21;
+}
+
+main article {
+    margin: auto;
+    max-width: 100%;
+    padding-top: 80px;
+    padding-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main h1 {
+    margin: 8px 16px 47.2px;
+    color: #fff;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: .055em;
+    font-weight: 200;
+}
+
+.capa {
+    background-color: #181a21;
+    border-radius: 4px;
+    padding: 24px 32px;
+    flex: 1;
+    max-width: 100%;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    padding-top: 10px;
+}
+
+main form {
+    flex: 1;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr;
+}
+
+.tente1 {
+    text-align: center;
+    color: #afafaf;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.app {
+    color: #afafaf;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+}
+
+.azul {
+    height: 17px;
+    color: #1999ff;
+    font-weight: 500;
+}
+
+.centerButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form button {
+    width: 270px;
+    position: relative;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    letter-spacing: .03em;
+    cursor: pointer;
+}
+
+main aside {
+    flex: 0;
+    display: grid;
+    gap: 4px;
+    margin-left: 40px;
+}
+
+.qrcode {
+    height: 199px;
+    width: 199px;
+    background-color: #ffffff;
+}
+
+.mais_baixo {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding-top: 48px;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    justify-content: center;
+    background-color: #181A21;
+    color: #ffffff;
+}
+
+.primeira_baixo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 200px;
+}
+
+.primeira_baixo_p {
+    font-size: 14px;
+    color: #b8b6b4;
+}
+
+.primeira_baixo_a {
+    max-width: 60%;
+    text-align: center;
+    font-size: 14px;
+}
+
+.primeira_baixo_img {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 200px;
+}
+
+.ultima_baixo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 200px;
+}
+
+.ultima_baixo_a {
+    margin: 20px 0 10px 0;
+    display: block;
+    text-align: center;
+}
+
+.ultima_baixo_span {
+    padding: 0 15px;
+    font-size: 15px;
+    line-height: 30px;
+    display: block;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+}
+
+.ultima_baixo_p {
+    padding: 0 15px;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+#footer {
+    background-color: #181A21;
+    height: 290px;
+    display: block;
+    margin-top: 260px;
+}
+
+#footer_cont {
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolutez;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px 0 60px 0;
+    margin: 0;
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    background: #171a21;
+}
+
+.linha {
+    height: 8px;
+    border-top: 1px solid #363c44;
+}
+
+.linha2 {
+    height: 8px;
+    border-top: 1px solid #363c44;
+    margin-top: 100px;
+}
+
+#conteudo_footer {
+    width: 940px;
+    margin: 0px auto;
+    padding-top: 16px;
+}
+
+.alinha {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo_baixo_steam {
+    float: right;
+    padding-top: 10px;
+}
+
+.caixa_logo_valve {
+    text-decoration: none;
+    color: #ffffff;
+    float: left;
+    padding-top: 2px;
+}
+
+.logo_valve {
+    height: 25px;
+    width: auto;
+    height: 25px;
+    width: auto;
+}
+
+.footer_texto {
+    float: left;
+    margin-left: 12px;
+    color: #8F98A0;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.footer_texto_p {
+    color: #8F98A0;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.footer_texto_p a {
+    padding: 0px;
+}
+
+.button_responsive {
+    display: block;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.button_responsive_1 {
+    border-radius: 2px;
+    border: none;
+    padding: 1px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none !important;
+    color: #66c0f4 !important;
+    background: #212c3d;
+}
+
+.footer_links {
+    margin-top: 8px;
+    float: left;
+    font-family: "Motiva Sans", Sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    color: #61686D;
+}
+
+.footer_links img {
+    vertical-align: bottom;
+}
+
+
+@media screen and (max-width: 1030px) {
+
+    nav {
+        height: 66px;
+    }
+    
+    .responsive_menu{
+        display: none;
+    }
+
+    .listaR{
+        display: none;
+    }
+
+    .lista{
+        display: none;
+    }
+    
+    .responsive_header {
+        display: inline-block;
+        background: #171a21;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.75);
+        overflow: hidden;
+        padding: 13px 8px;
+    }
+
+    .responsive_menu_logo{
+        display: block;
+        cursor: pointer;
+        width: 36px;
+        height: 31px;
+        padding: 0px;
+
+    }
+
+    .responsive_header_logo{
+        display: block;
+        text-align: center;
+        margin: auto;
+        padding: 0px;
+        position: absolute;
+        right: 0px;
+        left: 0px;
+        bottom: 0px;
+    }
+
+    footer{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    main{
+        background: radial-gradient(rgba(24, 26, 33, 0) 0%, #181A21 100%) fixed no-repeat, url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask_mobile.jpg) center top no-repeat, #181A21;
+    }
+
+    .formulario {
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        max-width: 80%;
+        margin: auto;      
+    }
+
+    .capa{
+        background-color: transparent;  
+    }
+
+    .formulario input{
+        height: 39px;
+    }
+
+    .formulario aside{
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        align-items: center;
+        padding-top: 50px;
+    }
+
+    .mais_baixo{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+}
