@@ -4,25 +4,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" /> 
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
     <title>Iniciar sessão</title>
   </head>
   <body>
     <header>
       <nav>
         <div class="responsive_header">
-            <div id="responsive_menu_logo">
-              <img src="https://store.cloudflare.steamstatic.com/public/shared/images/responsive/header_menu_hamburger.png" height="31" width="36">
-            </div>
-            <div>
-              <a class="responsive_header_logo" href="https://store.steampowered.com/?snr=1_60_4__global-responsive-menu">
-                <img src="https://store.cloudflare.steamstatic.com/public/shared/images/responsive/header_logo.png" height="36" alt="STEAM">
-              </a>
-            </div>
+          <div id="responsive_menu_logo">
+            <img
+              src="https://store.cloudflare.steamstatic.com/public/shared/images/responsive/header_menu_hamburger.png"
+              height="31"
+              width="36"
+            />
+          </div>
+          <div>
+            <a
+              class="responsive_header_logo"
+              href="https://store.steampowered.com/?snr=1_60_4__global-responsive-menu"
+            >
+              <img
+                src="https://store.cloudflare.steamstatic.com/public/shared/images/responsive/header_logo.png"
+                height="36"
+                alt="STEAM"
+              />
+            </a>
+          </div>
         </div>
         <section class="responsive_menu">
-          <a class="link_steam" href="https://store.steampowered.com/?snr=1_60_4__global-header" target="_blank">
-            <img class="logo_steam" alt="" src="https://store.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016"/>
+          <a
+            class="link_steam"
+            href="https://store.steampowered.com/?snr=1_60_4__global-header"
+            target="_blank"
+          >
+            <img
+              class="logo_steam"
+              alt=""
+              src="https://store.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016"
+            />
           </a>
         </section>
 
@@ -40,15 +64,32 @@
           <a class="instale">Instale o Steam</a>
 
           <a>iniciar sessão</a>
-          
+
           &nbsp; | &nbsp;
 
           <a class="idioma">idioma</a>
         </ul>
       </nav>
+      <span
+        id="burguer"
+        class="material-symbols-outlined"
+        onclick="abreFechaMenu()"
+        >menu</span
+      >
+      <menu id="menuBurguer">
+        <ul id="lista_burguer">
+          <button class="botao_burguer" onclick="inserir()">
+            Inserir
+          </button>
+          <button class="botao_burguer" onclick="buscar()">
+            Procurar
+          </button>
+        </ul>
+      </menu>
     </header>
 
     <main>
+      <div id="conteudoInserir" size="10"></div>
       <article>
         <section class="main_login">
           <h1>INICIAR SESSÃO</h1>
@@ -58,14 +99,20 @@
               <form>
                 <p class="azul">Iniciar sessão com o nome de usuário</p>
 
-                <input class="inputs" type="text">
+                <input class="inputs" type="text" />
 
                 <p>Senha</p>
 
-                <input class="inputs" type="password">
+                <input class="inputs" type="password" />
 
-                <label for="check"><input id="check" type="checkbox" class="caixinha"/>Lembre-me</label>
-                
+                <label for="check"
+                  ><input
+                    id="check"
+                    type="checkbox"
+                    class="caixinha"
+                  />Lembre-me</label
+                >
+
                 <section class="centerButton">
                   <button>Iniciar sessão</button>
                 </section>
@@ -225,5 +272,6 @@
         </div>
       </div>
     </footer>
+    
   </body>
 </html>

@@ -123,7 +123,7 @@ main form {
     cursor: pointer;
 }
 
-.inputs{    
+.inputs {
     border-radius: 2px;
     color: #ffffff;
     padding: 10px;
@@ -133,14 +133,14 @@ main form {
     border: 1px solid #32353c;
     outline-color: blue;
 }
-  
+
 .caixinha[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    height:20px;
-    width:20px;
-    background-color:#32353c;
+    height: 20px;
+    width: 20px;
+    background-color: #32353c;
     border-radius: 2px;
     margin-right: 5px;
     border: 1px solid #32353c;
@@ -156,7 +156,7 @@ main form {
     line-height: 20px;
     font-size: 16px;
     color: white;
-  }
+}
 
 .app {
     color: #afafaf;
@@ -203,7 +203,7 @@ main aside {
     margin-left: 40px;
 }
 
-.pou{
+.pou {
     padding-bottom: 20px;
 }
 
@@ -408,19 +408,19 @@ main aside {
     nav {
         height: 66px;
     }
-    
-    .responsive_menu{
+
+    .responsive_menu {
         display: none;
     }
 
-    .listaR{
+    .listaR {
         display: none;
     }
 
-    .lista{
+    .lista {
         display: none;
     }
-    
+
     .responsive_header {
         display: inline-block;
         background: #171a21;
@@ -434,7 +434,7 @@ main aside {
         padding: 13px 8px;
     }
 
-    .responsive_menu_logo{
+    .responsive_menu_logo {
         display: block;
         cursor: pointer;
         width: 36px;
@@ -443,7 +443,7 @@ main aside {
 
     }
 
-    .responsive_header_logo{
+    .responsive_header_logo {
         display: block;
         text-align: center;
         margin: auto;
@@ -454,19 +454,20 @@ main aside {
         bottom: 0px;
     }
 
-    footer{
+    footer {
         display: none;
     }
 
 }
 
 @media screen and (max-width: 700px) {
-    body{
+    body {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-    main{
+
+    main {
         background: radial-gradient(rgba(24, 26, 33, 0) 0%, #181A21 100%) fixed no-repeat, url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask_mobile.jpg) center top no-repeat, #181A21;
     }
 
@@ -475,18 +476,18 @@ main aside {
         flex-direction: column;
         align-content: space-between;
         max-width: 80%;
-        margin: auto;      
+        margin: auto;
     }
 
-    .capa{
-        background-color: transparent;  
+    .capa {
+        background-color: transparent;
     }
 
-    .formulario input{
+    .formulario input {
         height: 39px;
     }
 
-    .formulario aside{
+    .formulario aside {
         display: flex;
         flex-direction: column;
         align-content: space-between;
@@ -496,10 +497,58 @@ main aside {
         margin: auto;
     }
 
-    .mais_baixo{
+    .mais_baixo {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
     }
 
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+span#burguer {
+    margin: 0px;
+    display: block;
+    text-align: center;
+    background: #171a21;
+    color: #b8b6b4;
+}
+
+span#burguer:hover {
+    background: #b8b6b4;
+    color: #171a21;
+}
+
+menu#menuBurguer {
+    display: none;
+}
+
+ul#lista_burguer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button.botao_burguer {
+    padding: 0px 23vw;
+    text-align: center;
+    background: #171a21;
+    color: #b8b6b4;
+}
+
+button.botao_burguer:hover {
+    background: #b8b6b4;
+    color: #171a21;
+}
+
+
+
+div#conteudoInserir {
+    height: 100px;
+    display: block;
+    color: black;
 }
