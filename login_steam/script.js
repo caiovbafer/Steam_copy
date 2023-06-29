@@ -7,7 +7,7 @@ function abreFechaMenu() {
   }
 }
 
-/*function inserir() {
+function inserir() {
   const titulo = prompt("Digite o título do post:");
   const imagem = prompt("Digite o endereço da imagem:");
   const data = prompt("Digite a data:");
@@ -186,4 +186,3 @@ function limparMensagensErro() {
     elemento.innerText = "";
   });
 }
-*/
