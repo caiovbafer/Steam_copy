@@ -9,7 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
     <title>Iniciar sessão</title>
   </head>
   <body>
@@ -21,6 +20,7 @@
               src="https://store.cloudflare.steamstatic.com/public/shared/images/responsive/header_menu_hamburger.png"
               height="31"
               width="36"
+              alt="menuBurguer"
             />
           </div>
           <div>
@@ -97,13 +97,17 @@
           <section class="capa">
             <section class="formulario">
               <form>
-                <p class="azul">Iniciar sessão com o nome de usuário</p>
+                <label for="user">
+                  <p class="azul">Iniciar sessão com o nome de usuário</p>
+                </label>
 
-                <input class="inputs" type="text" />
+                <input class="inputs" type="text" id="user"/>
 
-                <p>Senha</p>
+                <label for="pass">
+                  <p>Senha</p>
+                </label>
 
-                <input class="inputs" type="password" />
+                <input class="inputs" type="password" id="pass"/>
 
                 <label for="check"
                   ><input
@@ -127,6 +131,7 @@
                 <img
                   class="qrcode"
                   src="https://www.pngplay.com/wp-content/uploads/12/QR-Code-PNG-Background.png"
+                  alt="imagem do qr code"
                 />
                 <p>
                   Use o
@@ -272,6 +277,6 @@
         </div>
       </div>
     </footer>
-    
+    <script src="script.js"></script>
   </body>
 </html>
