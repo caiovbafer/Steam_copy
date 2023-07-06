@@ -1,3 +1,8 @@
+window.addEventListener("DOMContentLoaded", function() {
+  exibirEntradas(); // Chama a função para exibir as entradas ao carregar a página
+});
+
+// Função para abrir e fechar o menu
 function abreFechaMenu() {
   var menuBurguer = document.getElementById("menuBurguer");
   if (menuBurguer.style.display == "block") {
@@ -7,182 +12,222 @@ function abreFechaMenu() {
   }
 }
 
+// Função APARECER e SUMIR a caixa de busca
+
+// clicar duas vezes para aparecer pela
+function procurar() {
+  var form = document.getElementById("procurar");
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+}
+// Fim da função aparecer e sumir a caixa de busca
+
+// Função para abrir o dialog de inserção de imagens
 function inserir() {
-  const titulo = prompt("Digite o título do post:");
-  const imagem = prompt("Digite o endereço da imagem:");
-  const data = prompt("Digite a data:");
-  const conteudo = prompt("Digite o conteúdo:");
+  var form = document.getElementById("postForm");
+  form.style.display = "block";
+}
 
-  // Limpar mensagens de erro existentes
-  limparMensagensErro();
+// Função para capturar os dados e imprimir na tela
+var entradas = JSON.parse(localStorage.getItem("entradas")) || []; // Array para armazenar as entradas
+var entradaAtual = null; // Variável para armazenar a entrada sendo editada
 
-  // Realizar validação dos campos
-  let isValid = true;
+function capturarDados(event) {
+  event.preventDefault();
 
-  if (!titulo) {
-    isValid = false;
-    exibirMensagemErro("titulo", "O título é obrigatório.");
-  }
+  var titulo = document.getElementById("titulo").value;
+  var imagemInput = document.getElementById("imagem");
+  var imagem = imagemInput.files[0];
+  var data = document.getElementById("data").value;
+  var conteudo = document.getElementById("conteudo").value;
 
-  if (!imagem) {
-    isValid = false;
-    exibirMensagemErro("imagem", "A imagem é obrigatória.");
-  }
+  var reader = new FileReader();
 
-  if (!data) {
-    isValid = false;
-    exibirMensagemErro("data", "A data é obrigatória.");
-  }
+  reader.onload = function (e) {
+    var entrada = {
+      titulo: titulo,
+      imagem: e.target.result,
+      data: data,
+      conteudo: conteudo,
+    };
 
-  if (!conteudo) {
-    isValid = false;
-    exibirMensagemErro("conteudo", "O conteúdo é obrigatório.");
-  }
+    if (entradaAtual !== null) {
+      entradas[entradaAtual] = entrada; // Substitui a entrada atual no array de entradas
+      entradaAtual = null; // Limpa a entrada atual
+    } else {
+      entradas.push(entrada); // Adiciona a entrada ao array de entradas
+    }
 
-  if (!isValid) {
-    return; // Se algum campo for inválido, interrompa o processo de inserção
-  }
+    localStorage.setItem("entradas", JSON.stringify(entradas)); // Salva as entradas no localStorage
 
-  const novoPost = {
-    titulo: titulo,
-    imagem: imagem,
-    data: data,
-    conteudo: conteudo,
+    exibirEntradas(); // Atualiza a exibição das entradas
+
+    // Limpa os campos de entrada do formulário
+    document.getElementById("titulo").value = "";
+    imagemInput.value = "";
+    document.getElementById("data").value = "";
+    document.getElementById("conteudo").value = "";
+
+    // Esconde o formulário
+    var form = document.getElementById("postForm");
+    form.style.display = "none";
   };
 
-  // Obter posts existentes do localStorage (se houver)
-  let posts = localStorage.getItem("posts");
-  if (posts) {
-    posts = JSON.parse(posts); // Converter para array JavaScript
+  if (imagem) {
+    reader.readAsDataURL(imagem);
   } else {
-    posts = []; // Se não houver posts, iniciar com um array vazio
+    entrada.imagem = ""; // Mantém a imagem vazia se nenhum arquivo for selecionado
+    reader.onload(e); // Chama o onload diretamente sem carregar um arquivo
   }
-
-  // Adicionar novo post ao array
-  posts.push(novoPost);
-
-  // Salvar o array atualizado no localStorage
-  localStorage.setItem("posts", JSON.stringify(posts));
-
-  // Inserir as informações no corpo do site
-  var corpoSite = document.getElementById("conteudoInserir");
-  let item = document.createElement("div");
-  item.innerHTML = `<h1>${novoPost.titulo}</h1><img src="${novoPost.imagem}" alt="Imagem do post" width="300" height="150"><p>Data: ${novoPost.data}</p><p>${novoPost.conteudo}</p>`;
-  item.style.background = 'gray';
-
-  var removeButton = document.createElement("button");
-  removeButton.innerText = "Remover";
-  removeButton.addEventListener("click", function () {
-    removerPost(item);
-  });
-
-  var editButton = document.createElement("button");
-  editButton.innerText = "Editar";
-  editButton.addEventListener("click", function () {
-    editarPost(novoPost, item);
-  });
-
-  item.appendChild(removeButton);
-  item.appendChild(editButton);
-
-  corpoSite.appendChild(item);
 }
 
-// Função auxiliar para remover um post
-function removerPost(item) {
-  var corpoSite = document.getElementById("conteudoInserir");
-  corpoSite.removeChild(item);
+function exibirEntradas() {
+  var conteudoInserir = document.getElementById("conteudoInserir");
+  conteudoInserir.innerHTML = ""; // Limpa o conteúdo existente
 
-  // Remover post do array no localStorage
-  let posts = JSON.parse(localStorage.getItem("posts"));
-  const index = Array.from(corpoSite.children).indexOf(item);
-  posts.splice(index, 1);
-  localStorage.setItem("posts", JSON.stringify(posts));
+  for (var i = 0; i < entradas.length; i++) {
+    var entrada = entradas[i];
+
+    var resultado = document.createElement("div");
+    resultado.classList.add("itens");
+    resultado.innerHTML =
+      "<p>Título: " +
+      entrada.titulo +
+      "</p>" +
+      "<p>Imagem: <img src='" +
+      entrada.imagem +
+      "'></p>" +
+      "<p>Data: " +
+      entrada.data +
+      "</p>" +
+      "<p>Conteúdo: " +
+      entrada.conteudo +
+      "</p>";
+
+    var botaoRemover = document.createElement("button");
+    botaoRemover.textContent = "Remover";
+    botaoRemover.addEventListener("click", removerEntrada.bind(null, i)); // Passa o índice da entrada como argumento para a função de remoção
+
+    var botaoEditar = document.createElement("button");
+    botaoEditar.textContent = "Editar";
+    botaoEditar.addEventListener("click", editarEntrada.bind(null, i)); // Passa o índice da entrada como argumento para a função de edição
+
+    resultado.appendChild(botaoRemover);
+    resultado.appendChild(botaoEditar);
+
+    conteudoInserir.appendChild(resultado);
+  }
 }
 
-// Função auxiliar para editar um post
-function editarPost(post, item) {
-  const novoTitulo = prompt("Digite o novo título do post:", post.titulo);
-  const novaImagem = prompt("Digite o novo endereço da imagem:", post.imagem);
-  const novaData = prompt("Digite a nova data:", post.data);
-  const novoConteudo = prompt("Digite o novo conteúdo:", post.conteudo);
-
-  post.titulo = novoTitulo;
-  post.imagem = novaImagem;
-  post.data = novaData;
-  post.conteudo = novoConteudo;
-
-  item.innerHTML = `<h1>${post.titulo}</h1><img src="${post.imagem}" alt="Imagem do post" width="300" height="150"><p>Data: ${post.data}</p><p>${post.conteudo}</p>`;
-
-  var removeButton = document.createElement("button");
-  removeButton.innerText = "Remover";
-  removeButton.addEventListener("click", function () {
-    removerPost(item);
-  });
-
-  var editButton = document.createElement("button");
-  editButton.innerText = "Editar";
-  editButton.addEventListener("click", function () {
-    editarPost(post, item);
-  });
-
-  item.appendChild(removeButton);
-  item.appendChild(editButton);
-
-  // Atualizar o post no array no localStorage
-  let posts = JSON.parse(localStorage.getItem("posts"));
-  const index = Array.from(
-    document.getElementById("conteudoInserir").children
-  ).indexOf(item);
-  posts[index] = post;
-  localStorage.setItem("posts", JSON.stringify(posts));
+function removerEntrada(index) {
+  entradas.splice(index, 1); // Remove a entrada do array
+  localStorage.setItem("entradas", JSON.stringify(entradas)); // Atualiza o localStorage com as entradas removidas
+  exibirEntradas(); // Atualiza a exibição das entradas
 }
 
+function editarEntrada(index) {
+  entradaAtual = index; // Armazena o índice da entrada sendo editada
+
+  var entrada = entradas[index];
+
+  document.getElementById("titulo").value = entrada.titulo;
+  document.getElementById("imagem").value = ""; // Limpa o campo de imagem
+  document.getElementById("data").value = entrada.data;
+  document.getElementById("conteudo").value = entrada.conteudo;
+
+  var form = document.getElementById("postForm");
+  form.onsubmit = function (event) {
+    event.preventDefault();
+    atualizarEntrada();
+  };
+
+  var botaoEnviar = document.querySelector("#postForm button[type='submit']");
+  botaoEnviar.textContent = "Atualizar";
+
+  // Exibe o formulário novamente
+  form.style.display = "block";
+}
+
+function atualizarEntrada() {
+  var titulo = document.getElementById("titulo").value;
+  var imagemInput = document.getElementById("imagem");
+  var imagem = imagemInput.files[0];
+  var data = document.getElementById("data").value;
+  var conteudo = document.getElementById("conteudo").value;
+
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    var entrada = {
+      titulo: titulo,
+      imagem: e.target.result,
+      data: data,
+      conteudo: conteudo,
+    };
+
+    entradas[entradaAtual] = entrada; // Atualiza a entrada no array
+    localStorage.setItem("entradas", JSON.stringify(entradas)); // Atualiza o localStorage com as entradas atualizadas
+
+    exibirEntradas(); // Atualiza a exibição das entradas
+
+    var form = document.getElementById("postForm");
+    form.onsubmit = capturarDados; // Restaura a função de captura de dados
+
+    var botaoEnviar = document.querySelector("#postForm button[type='submit']");
+    botaoEnviar.textContent = "Enviar";
+
+    // Limpa os campos de entrada do formulário
+    document.getElementById("titulo").value = "";
+    document.getElementById("imagem").value = "";
+    document.getElementById("data").value = "";
+    document.getElementById("conteudo").value = "";
+
+    // Esconde o formulário novamente
+    form.style.display = "none";
+  };
+
+  if (imagem) {
+    reader.readAsDataURL(imagem);
+  } else {
+    entrada.imagem = ""; // Mantém a imagem vazia se nenhum arquivo for selecionado
+    reader.onload(e); // Chama o onload diretamente sem carregar um arquivo
+  }
+}
+
+
+
+// Função de buscar
 function buscar() {
-  const termoBusca = prompt("Digite o termo de busca:");
-  const conteudoInserir = document.getElementById("conteudoInserir");
-  const posts = conteudoInserir.children;
-  let resultados = [];
+  var input = document.getElementById("searchInput");
+  var termo = input.value.toLowerCase();
+  var itens = document.getElementsByClassName("itens");
 
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
-    const titulo = post.querySelector("h1").textContent;
-    const imagem = post.querySelector("img").getAttribute("src");
-    const data = post.querySelector("p:nth-of-type(2)").textContent.slice(6);
-    const conteudo = post.querySelector("p:last-of-type").textContent;
+  var encontrados = 0; // Contador para verificar se algum resultado foi encontrado
 
-    if (
-      titulo.includes(termoBusca) ||
-      imagem.includes(termoBusca) ||
-      data.includes(termoBusca) ||
-      conteudo.includes(termoBusca)
-    ) {
-      const resultado = document.createElement("div");
-      resultado.innerHTML = `<p><strong>Título:</strong> ${titulo}</p><p><strong>Imagem:</strong> ${imagem}</p><p><strong>Data:</strong> ${data}</p><p><strong>Conteúdo:</strong> ${conteudo}</p>`;
-      resultados.push(resultado);
+  for (var i = 0; i < itens.length; i++) {
+    var item = itens[i];
+    var conteudo = item.textContent.toLowerCase();
+
+    if (conteudo.includes(termo)) {
+      item.style.display = "block"; // Exibe o item se o termo for encontrado
+      encontrados++;
+    } else {
+      item.style.display = "none"; // Esconde o item se o termo não for encontrado
     }
   }
+  // Exibe a mensagem de "não encontrado" se nenhum resultado foi encontrado
+  var mensagem = document.createElement("div");
+  mensagem.id = ("searchResults");
+  var searchResults = document.getElementById("searchResults");
 
-  if (resultados.length > 0) {
-    const resultadoString = resultados
-      .map((resultado) => resultado.textContent)
-      .join("\n\n");
-    alert(`Resultados da busca:\n\n${resultadoString}`);
+  if (encontrados === 0) {
+    searchResults.textContent = "Nenhum resultado encontrado.";
   } else {
-    alert("Nenhum resultado encontrado.");
+    searchResults.textContent = ""; // Limpa a mensagem de resultado não encontrado
+    resultado.appendChild(mensagem);
   }
 }
-
-function exibirMensagemErro(campo, mensagem) {
-  const elementoCampo = document.getElementById(`campo-${campo}`);
-  elementoCampo.classList.add("error");
-  elementoCampo.innerText = mensagem;
-}
-
-function limparMensagensErro() {
-  const elementosErro = document.querySelectorAll(".error");
-  elementosErro.forEach((elemento) => {
-    elemento.classList.remove("error");
-    elemento.innerText = "";
-  });
-}
+// Fim da função de BUSCAR
